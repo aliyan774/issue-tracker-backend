@@ -41,6 +41,10 @@ public class Issue {
   @JoinColumn(name = "assigned_to", nullable = false)
   private User assignedTo;
 
+  @ManyToOne
+  @JoinColumn(name = "created_by", nullable = false)
+  private User createdBy;
+
   @Column(nullable = false)
   private LocalDateTime dueDate;
 
