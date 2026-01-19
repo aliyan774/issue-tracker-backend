@@ -29,6 +29,6 @@ public class Organization {
   private LocalDateTime createdAt;
 
   @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
-  private Set projects;
+  private Set<Project> projects;
 
 }

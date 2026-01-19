@@ -34,5 +34,5 @@ public class Project {
   private Organization organization;
 
   @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
-  private Set issues;
+  private Set<Issue> issues;
 }

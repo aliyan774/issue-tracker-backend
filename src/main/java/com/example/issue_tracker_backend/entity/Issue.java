@@ -58,7 +58,7 @@ public class Issue {
   private LocalDateTime updatedAt;
 
   @OneToMany(mappedBy = "issue", cascade = CascadeType.ALL)
-  private Set activityLogs;
+  private Set<ActivityLog> activityLogs;
 
   public enum IssueStatus {
     NEW, IN_PROGRESS, COMPLETED, BLOCKED

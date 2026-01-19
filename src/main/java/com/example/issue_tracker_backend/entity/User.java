@@ -41,13 +41,13 @@ public class User {
   private LocalDateTime createdAt;
 
   @OneToMany(mappedBy = "user")
-  private Set projectUsers;
+  private Set<ProjectUser> projectUsers;
 
   @OneToMany(mappedBy = "createdBy")
-  private Set createdIssues;
+  private Set<Issue> createdIssues;
 
   @OneToMany(mappedBy = "assignedTo")
-  private Set assignedIssues;
+  private Set<Issue> assignedIssues;
 
   public enum UserRole {
     ADMIN, USER
