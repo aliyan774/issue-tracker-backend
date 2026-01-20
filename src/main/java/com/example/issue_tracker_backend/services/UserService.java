@@ -4,17 +4,18 @@ import com.example.issue_tracker_backend.dto.UserResponse;
 import com.example.issue_tracker_backend.entity.User;
 import com.example.issue_tracker_backend.exception.ResourceNotFoundException;
 import com.example.issue_tracker_backend.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
-
 public class UserService {
   private final UserRepository userRepository;
+  
+  public UserService(UserRepository userRepository) {
+    this.userRepository = userRepository;
+  }
 
   public List<UserResponse> getAllUsers() {
     List<User> users = userRepository.findAll();

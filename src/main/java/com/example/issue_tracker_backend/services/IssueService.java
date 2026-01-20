@@ -6,12 +6,11 @@ import com.example.issue_tracker_backend.entity.ActivityLog;
 import com.example.issue_tracker_backend.entity.Issue;
 import com.example.issue_tracker_backend.entity.Project;
 import com.example.issue_tracker_backend.entity.User;
-import com.example.issue_tracker_backend.exceptions.ResourceNotFoundException;
-import com.example.issue_tracker_backend.exceptions.UnauthorizedException;
+import com.example.issue_tracker_backend.exception.ResourceNotFoundException;
+import com.example.issue_tracker_backend.exception.UnauthorizedException;
 import com.example.issue_tracker_backend.repository.IssueRepository;
 import com.example.issue_tracker_backend.repository.ProjectRepository;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,7 +21,6 @@ import java.util.Objects;
 import java.util.stream.Collectors;
 
 @Service
-@RequiredArgsConstructor
 public class IssueService {
 
     private final IssueRepository issueRepository;
@@ -30,6 +28,16 @@ public class IssueService {
     private final UserService userService;
     private final ActivityLogService activityLogService;
     private final ObjectMapper objectMapper;
+    
+    public IssueService(IssueRepository issueRepository, ProjectRepository projectRepository, 
+      UserService userService, ActivityLogService activityLogService, 
+      ObjectMapper objectMapper) {
+      this.issueRepository = issueRepository;
+      this.projectRepository = projectRepository;
+      this.userService = userService;
+      this.activityLogService = activityLogService;
+      this.objectMapper = objectMapper;
+    }
 
     @Transactional
     public IssueResponse createIssue(IssueRequest request, Long currentUserId) {

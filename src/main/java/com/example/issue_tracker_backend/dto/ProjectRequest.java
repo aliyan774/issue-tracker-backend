@@ -2,10 +2,8 @@ package com.example.issue_tracker_backend.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
-import lombok.Data;
 
 
-@Data
 public class ProjectRequest {
   @NotBlank(message = "Project name is required")
   private String name;
@@ -14,4 +12,13 @@ public class ProjectRequest {
 
   @NotNull(message = "Organization ID is required")
   private Long organizationId;
+  
+  public String getName() { return name; }
+  public void setName(String name) { this.name = name; }
+  
+  public String getDescription() { return description; }
+  public void setDescription(String description) { this.description = description; }
+  
+  public Long getOrganizationId() { return organizationId; }
+  public void setOrganizationId(Long organizationId) { this.organizationId = organizationId; }
 }

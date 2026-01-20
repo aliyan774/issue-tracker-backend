@@ -1,17 +1,11 @@
 package com.example.issue_tracker_backend.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 
 @Entity
 @Table(name = "project_users")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class ProjectUser implements Serializable {
 
   private static final long serialVersionUID = 1L;
@@ -38,4 +32,23 @@ public class ProjectUser implements Serializable {
     VIEWER
   }
   
+  public ProjectUser() {}
+  
+  public ProjectUser(Project project, User user, ProjectRole role) {
+    this.project = project;
+    this.user = user;
+    this.role = role;
+  }
+  
+  public Long getId() { return id; }
+  public void setId(Long id) { this.id = id; }
+  
+  public Project getProject() { return project; }
+  public void setProject(Project project) { this.project = project; }
+  
+  public User getUser() { return user; }
+  public void setUser(User user) { this.user = user; }
+  
+  public ProjectRole getRole() { return role; }
+  public void setRole(ProjectRole role) { this.role = role; }
 }

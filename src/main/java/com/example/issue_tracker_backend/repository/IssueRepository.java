@@ -20,7 +20,6 @@ public interface IssueRepository extends JpaRepository<Issue, Long> {
   )
   List<Issue> searchIssues(
     @Param("projectId") Long projectId,
-    @Param("issueId") Long issueId,
     @Param("searchTerm") String searchTerm
   );
 }

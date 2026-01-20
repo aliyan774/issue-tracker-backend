@@ -1,9 +1,6 @@
 package com.example.issue_tracker_backend.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
@@ -11,10 +8,6 @@ import java.util.Set;
 
 @Entity
 @Table(name = "organizations")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-
 public class Organization {
   
   @Id
@@ -30,5 +23,22 @@ public class Organization {
 
   @OneToMany(mappedBy = "organization", cascade = CascadeType.ALL)
   private Set<Project> projects;
-
+  
+  public Organization() {}
+  
+  public Organization(String name) {
+    this.name = name;
+  }
+  
+  public Long getId() { return id; }
+  public void setId(Long id) { this.id = id; }
+  
+  public String getName() { return name; }
+  public void setName(String name) { this.name = name; }
+  
+  public LocalDateTime getCreatedAt() { return createdAt; }
+  public void setCreatedAt(LocalDateTime createdAt) { this.createdAt = createdAt; }
+  
+  public Set<Project> getProjects() { return projects; }
+  public void setProjects(Set<Project> projects) { this.projects = projects; }
 }

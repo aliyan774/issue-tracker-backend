@@ -7,17 +7,21 @@ import com.example.issue_tracker_backend.dto.UserResponse;
 import com.example.issue_tracker_backend.entity.User;
 import com.example.issue_tracker_backend.exception.UnauthorizedException;
 import com.example.issue_tracker_backend.repository.UserRepository;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class AuthService {
     
   private final UserRepository userRepository;
   private final PasswordEncoder passwordEncoder;
   private final JwtService jwtService;
+  
+  public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder, JwtService jwtService) {
+    this.userRepository = userRepository;
+    this.passwordEncoder = passwordEncoder;
+    this.jwtService = jwtService;
+  }
   
   public JwtResponse login(LoginRequest request) {
     User user = userRepository.findByEmail(request.getEmail())
