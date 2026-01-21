@@ -12,6 +12,12 @@ public class ApiResponse {
     private String message;
     private Object data;
     
+    public ApiResponse(boolean success, String message, Object data) {
+        this.success = success;
+        this.message = message;
+        this.data = data;
+    }
+    
     public static ApiResponse success(String message, Object data) {
       return new ApiResponse(true, message, data);
     }

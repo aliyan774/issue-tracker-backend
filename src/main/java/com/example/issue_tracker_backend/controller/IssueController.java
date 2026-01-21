@@ -5,7 +5,7 @@ import com.example.issue_tracker_backend.dto.IssueRequest;
 import com.example.issue_tracker_backend.dto.IssueResponse;
 import com.example.issue_tracker_backend.services.IssueService;
 import jakarta.validation.Valid;
-import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
@@ -15,11 +15,11 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/issues")
-@RequiredArgsConstructor
 @CrossOrigin(origins = "http://localhost:4200")
 public class IssueController {
     
-    private final IssueService issueService;
+    @Autowired
+    private IssueService issueService;
     
     @PostMapping
     public ResponseEntity<ApiResponse> createIssue(
@@ -28,7 +28,7 @@ public class IssueController {
         Long userId = Long.parseLong(authentication.getName());
         IssueResponse issue = issueService.createIssue(request, userId);
         return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponse.success("Issue created successfully", issue));
+            .body(ApiResponse.success("Issue created successfully", issue));
     }
     
     @GetMapping
